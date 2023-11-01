@@ -6,14 +6,15 @@
 <h1 class="masthead-heading mb-0">MOVILES</h1>
 {% endblock h1_header %}
 
+{% block nav_formulario %}
+<a class="navbar-brand" href={% url 'cargar_movil' %}>CARGAR NUEVO MOVIL</a>
+{% endblock nav_formulario %}
+
 
 {% block main %}
 <form action="" method="POST">
     
-    {% csrf_token %}
-    {{formulario}}
-     <input type="submit" value="Cargar">
-
+   
 
 </form>
 {% endblock main %}
