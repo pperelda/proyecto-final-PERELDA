@@ -2,7 +2,7 @@ from django.shortcuts import render
 from django.http import HttpResponse
 from django.template import loader
 from inicio.forms import FormularioCrearMovil, FormularioCrearTelevisores, FormularioCrearLaptops
-from inicio.models import Moviles, Televisores
+from inicio.models import Moviles, Televisores, Laptops
 
 
 
