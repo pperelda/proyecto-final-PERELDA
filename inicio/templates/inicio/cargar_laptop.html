@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+
+{% block h1_head %}<title>Cargar laptop</title> {% endblock h1_head %}
+
+
+{% block h1_header %}
+<h1 >Cargue nuevo elemento</h1>
+{% endblock h1_header %}
+
+{% block main %}
+
+<form action='' method='POST'>
+    {% csrf_token %}
+    {{formulario}}
+    <input type="submit" value="Cargar">
+</form>
+{% endblock main %}

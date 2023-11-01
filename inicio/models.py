@@ -1,7 +1,7 @@
 from django.db import models
 
 class Moviles(models.Model):
-    marca = models.CharField(max_length=30)
+    marca = models.CharField(max_length=15)
     modelo = models.TextField()
     color = models.CharField(max_length=15)
     mpx_camara = models.IntegerField()
@@ -16,4 +16,4 @@ class Laptops(models.Model):
     marca = models.CharField(max_length=30)
     procesador = models.TextField()
     pulgadas = models.IntegerField()
-    descripcion = models.TextField()
+   
