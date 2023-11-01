@@ -5,3 +5,30 @@
 {% block h1_header %}
 <h1 class="masthead-heading mb-0">TELEVISORES</h1>
 {% endblock h1_header %}
+
+
+{% block main %}
+<form action='' method='POST'>
+    {% csrf_token %}
+    <p>
+        Marca:
+        <input type="text" name="marca"> 
+    </p>
+    <p>
+        Modelo:
+        <input type="text" name="modelo">
+    </p>
+    <p>
+        Color:
+        <input type="text" name="color"> 
+    </p>
+    <p>
+        Mpx camara:
+        <input type="number" name="mpx_camara">
+    </p>
+
+    <input type="submit" value="Cargar">
+
+
+</form>
+{% endblock main %}

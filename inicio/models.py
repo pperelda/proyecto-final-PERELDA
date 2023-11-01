@@ -4,7 +4,7 @@ class Moviles(models.Model):
     marca = models.CharField(max_length=30)
     modelo = models.TextField()
     color = models.CharField(max_length=15)
-    mp_camara_frontal = models.IntegerField()
+    mpx_camara = models.IntegerField()
 
 class Televisores(models.Model):
     marca = models.CharField(max_length=30)
