@@ -15,7 +15,7 @@ def inicio(request):
 def Moviles_principal(request):       #En esta vista voy a mostrar listado de moviles cargados
     
     marca_a_buscar = request.GET.get('marca')
-    if marca_a_buscar:
+    if marca_a_buscar: 
         listado_moviles = Moviles.objects.filter(marca__icontains=marca_a_buscar)
     else:
         listado_moviles = Moviles.objects.all()
