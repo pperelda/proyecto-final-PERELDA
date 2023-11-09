@@ -10,9 +10,18 @@ def inicio(request):
    return render(request, 'inicio/inicio.html', {})
 
 
+# ==================== MOVILES =====================
+
 def Moviles_principal(request):       #En esta vista voy a mostrar listado de moviles cargados
-    listado_moviles = Moviles.objects.all() 
+    
+    marca_a_buscar = request.GET.get('marca')
+    if marca_a_buscar:
+        listado_moviles = Moviles.objects.filter(marca__icontains=marca_a_buscar)
+    else:
+        listado_moviles = Moviles.objects.all()
+
     return render(request, 'inicio/moviles.html', {'listado_moviles': listado_moviles})
+
 
 def cargar_movil(request):  #Vista con formulario para crear movil
     if request.method == 'POST':
@@ -25,7 +34,7 @@ def cargar_movil(request):  #Vista con formulario para crear movil
             color = atributos.get('color')
             mpx_camara = atributos.get('mpx_camara')
             
-            movil = Moviles(marca=marca, modelo=modelo, color=color, mpx_camara=mpx_camara)
+            movil = Moviles(marca=marca.lower(), modelo=modelo, color=color, mpx_camara=mpx_camara)
             movil.save()
             
             return redirect('moviles')
@@ -35,10 +44,17 @@ def cargar_movil(request):  #Vista con formulario para crear movil
     return render(request, 'inicio/cargar_movil.html', {'formulario': formulario})
     
 
-
+# ==================== TELEVISORES =====================
 
 def Televisores_principal(request):
-   return render(request, 'inicio/televisores.html', {})
+    
+    marca_a_buscar = request.GET.get('marca')
+    if marca_a_buscar:
+        listado_televisores = Televisores.objects.filter(marca__icontains=marca_a_buscar)
+    else:
+        listado_televisores = Televisores.objects.all()
+     
+    return render(request, 'inicio/televisores.html', {'listado_televisores':listado_televisores})
 
 
 def cargar_televisor(request):  #Vista con formulario para crear movil
@@ -52,7 +68,7 @@ def cargar_televisor(request):  #Vista con formulario para crear movil
             definicion = atributos.get('definicion')
             es_smart = atributos.get('es_smart')
             
-            televisor = Televisores(marca=marca, pulgadas=pulgadas, definicion=definicion, es_smart=es_smart)
+            televisor = Televisores(marca=marca.lower(), pulgadas=pulgadas, definicion=definicion, es_smart=es_smart)
             televisor.save()
             
             return redirect('televisores')
@@ -63,9 +79,16 @@ def cargar_televisor(request):  #Vista con formulario para crear movil
     return render(request, 'inicio/cargar_televisor.html', {'formulario': formulario})
 
 
+# ==================== LAPTOPS =====================
 
 def Laptops_principal(request):
-   return render(request, 'inicio/laptops.html', {})
+   
+    marca_a_buscar = request.GET.get('marca')
+    if marca_a_buscar:
+        listado_laptops = Laptops.objects.filter(marca__icontains=marca_a_buscar)
+    else:
+        listado_laptops = Laptops.objects.all() 
+    return render(request, 'inicio/laptops.html', {'listado_laptops': listado_laptops})
 
 def cargar_laptop(request):  #Vista con formulario para crear movil
     if request.method == 'POST':
@@ -77,7 +100,7 @@ def cargar_laptop(request):  #Vista con formulario para crear movil
             procesador = atributos.get('procesador')
             pulgadas = atributos.get('pulgadas')
                         
-            laptop = Laptops(marca=marca, procesador=procesador, pulgadas=pulgadas)
+            laptop = Laptops(marca=marca.lower(), procesador=procesador, pulgadas=pulgadas)
             laptop.save()
             
             return redirect('laptops')

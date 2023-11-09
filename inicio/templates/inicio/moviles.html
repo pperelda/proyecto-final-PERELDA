@@ -12,13 +12,14 @@
 
 
 {% block main %}
-
 <form action="">
-    <input type="text" name="marca" placeholder="Samsung, Xiaomi ...">
+    <input type="text" name="marca" placeholder="Samsung, Apple ...">
     <input type="submit" value="Buscar">
 </form>
-
-{{listado_moviles}}
-
+    {% for elemento in listado_moviles %}
+    <li> 
+        {{elemento}} 
+    </li>
+    {% endfor %}
 {% endblock main %}
 
