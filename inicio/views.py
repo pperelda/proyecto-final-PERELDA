@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from django.template import loader
 from inicio.forms import FormularioCrearMovil, FormularioCrearTelevisores, FormularioCrearLaptops
@@ -10,11 +10,11 @@ def inicio(request):
    return render(request, 'inicio/inicio.html', {})
 
 
-def Moviles(request):       #En esta vista voy a mostrar listado de moviles cargados
-    return render(request, 'inicio/moviles.html', {})
+def Moviles_principal(request):       #En esta vista voy a mostrar listado de moviles cargados
+    listado_moviles = Moviles.objects.all() 
+    return render(request, 'inicio/moviles.html', {'listado_moviles': listado_moviles})
 
 def cargar_movil(request):  #Vista con formulario para crear movil
-    
     if request.method == 'POST':
         formulario = FormularioCrearMovil(request.POST) 
         if formulario.is_valid():
@@ -25,16 +25,19 @@ def cargar_movil(request):  #Vista con formulario para crear movil
             color = atributos.get('color')
             mpx_camara = atributos.get('mpx_camara')
             
-            moviles = Moviles(marca=marca, modelo=modelo, color=color, mpx_camara=mpx_camara)
-            moviles.save()
-        
+            movil = Moviles(marca=marca, modelo=modelo, color=color, mpx_camara=mpx_camara)
+            movil.save()
+            
+            return redirect('moviles')
+        else:
+            return render(request, 'inicio/cargar_movil.html', {'formulario': formulario})
     formulario = FormularioCrearMovil()
     return render(request, 'inicio/cargar_movil.html', {'formulario': formulario})
     
 
 
 
-def Televisores(request):
+def Televisores_principal(request):
    return render(request, 'inicio/televisores.html', {})
 
 
@@ -51,13 +54,17 @@ def cargar_televisor(request):  #Vista con formulario para crear movil
             
             televisor = Televisores(marca=marca, pulgadas=pulgadas, definicion=definicion, es_smart=es_smart)
             televisor.save()
-        
+            
+            return redirect('televisores')
+        else:
+            return render(request, 'inicio/cargar_televisor.html', {'formulario': formulario})
+    
     formulario = FormularioCrearTelevisores()
     return render(request, 'inicio/cargar_televisor.html', {'formulario': formulario})
 
 
 
-def Laptops(request):
+def Laptops_principal(request):
    return render(request, 'inicio/laptops.html', {})
 
 def cargar_laptop(request):  #Vista con formulario para crear movil
@@ -72,6 +79,10 @@ def cargar_laptop(request):  #Vista con formulario para crear movil
                         
             laptop = Laptops(marca=marca, procesador=procesador, pulgadas=pulgadas)
             laptop.save()
+            
+            return redirect('laptops')
+        else:
+            return render(request, 'inicio/cargar_laptop.html', {'formulario': formulario})
         
     formulario = FormularioCrearLaptops()
     return render(request, 'inicio/cargar_laptop.html', {'formulario': formulario})
