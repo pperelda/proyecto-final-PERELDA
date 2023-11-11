@@ -7,7 +7,7 @@ class Moviles(models.Model):
     mpx_camara = models.IntegerField()
     
     def __str__(self):
-        return f'{self.id} - {self.marca} - {self.modelo} - {self.color} - {self.mpx_camara}mpx'
+        return f'{self.marca.capitalize()} - {self.modelo} - {self.color.capitalize()} - {self.mpx_camara} mpx'
 
 class Televisores(models.Model):
     marca = models.CharField(max_length=30)
@@ -16,7 +16,7 @@ class Televisores(models.Model):
     es_smart = models.CharField(max_length=30)
     
     def __str__(self):
-        return f'{self.id} - {self.marca} - {self.pulgadas}" - {self.definicion}'
+        return f'{self.marca.upper()} - {self.pulgadas}" - {self.definicion}'
     
 class Laptops(models.Model):
     marca = models.CharField(max_length=30)
@@ -24,5 +24,5 @@ class Laptops(models.Model):
     pulgadas = models.IntegerField()
     
     def __str__(self):
-        return f'{self.id} - {self.procesador} - {self.pulgadas}"'
+        return f'{self.marca.capitalize()} - {self.procesador} - {self.pulgadas}"'
    
