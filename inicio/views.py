@@ -19,7 +19,7 @@ def Moviles_principal(request):       #En esta vista voy a mostrar listado de mo
         listado_moviles = Moviles.objects.filter(marca__icontains=marca_a_buscar)
     else:
         listado_moviles = Moviles.objects.all()
-
+    print(listado_moviles)
     return render(request, 'inicio/moviles.html', {'listado_moviles': listado_moviles})
 
 
