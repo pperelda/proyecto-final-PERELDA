@@ -16,7 +16,7 @@ class Televisores(models.Model):
     es_smart = models.CharField(max_length=30)
     
     def __str__(self):
-        return f'{self.marca.upper()} - {self.pulgadas}" - {self.definicion}'
+        return f'{self.marca.upper()} - {self.pulgadas}"'
     
 class Laptops(models.Model):
     marca = models.CharField(max_length=30)

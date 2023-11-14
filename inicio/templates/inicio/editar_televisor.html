@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+
+{% block h1_head %}<title>Editar Televisor</title> {% endblock h1_head %}
+
+{% block h1_header %}
+<h1 class="masthead-heading mb-0">**TELEVISORES**</h1>
+{% endblock h1_header %}
+
+{% block nav_formulario %}
+<a class="navbar-brand" href={% url 'cargar_televisor' %}>CARGAR NUEVO TELEVISOR</a>
+{% endblock nav_formulario %}
+
+
+{% block main %}
+<form action="" method="POST">
+    {% csrf_token %}
+    {{formulario}}
+    <input type="submit" value="Editar">
+</form> 
+{% endblock main %}

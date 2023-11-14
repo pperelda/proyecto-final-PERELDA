@@ -7,7 +7,7 @@
 {% endblock h1_header %}
 
 {% block nav_formulario %}
-<a class="navbar-brand" href={% url 'cargar_televisor' %}>CARGAR NUEVO TELEVISOR</a>
+<a class="navbar-brand" href={% url 'cargar_televisor' %}>CARGAR TV</a>
 {% endblock nav_formulario %}
 
 
@@ -16,9 +16,9 @@
     <input type="text" name="marca" placeholder="Samsung, LG, TCL ...">
     <input type="submit" value="Buscar">
 </form>
-    {% for elemento in listado_televisores %}
+    {% for televisor in listado_televisores %}
     <li> 
-        {{elemento}} 
+        {{televisor}} |<a href={% url 'eliminar_televisor' televisor.id %}>Eliminar</a>| <a href={% url 'editar_televisor' televisor.id %}>Editar</a>| <a href={% url 'detalle_televisor' televisor.id %}>Ver más...</a>| 
     </li>
     {% endfor %}
 {% endblock main %}

@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+
+{% block h1_head %}<title>Laptops</title> {% endblock h1_head %}
+
+{% block h1_header %}
+<h3 class="masthead-heading mb-0">LAPTOP #{{laptop.id}}</h3>
+{% endblock h1_header %}
+
+{% block nav_formulario %}
+<a class="navbar-brand" href={% url 'moviles' %}> LAPTOP's </a>
+<a class="navbar-brand" href={% url 'cargar_movil' %}>CARGAR LAPTOP</a>
+{% endblock nav_formulario %}
+
+
+{% block main %}
+<ul>
+<li>MARCA:  {{laptop.marca}}</li>
+<li>PROCESADOR:  {{laptop.procesador}}</li>
+<li>PANTALLA:  {{laptop.pulgadas}}"</li>
+</ul>
+{% endblock main %}

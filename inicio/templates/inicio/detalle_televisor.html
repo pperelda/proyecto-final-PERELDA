@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+
+{% block h1_head %}<title>Televisores</title> {% endblock h1_head %}
+
+{% block h1_header %}
+<h3 class="masthead-heading mb-0">TELEVISOR #{{televisor.id}}</h3>
+{% endblock h1_header %}
+
+{% block nav_formulario %}
+<a class="navbar-brand" href={% url 'televisores' %}> TV's </a>
+<a class="navbar-brand" href={% url 'cargar_movil' %}>CARGAR TV</a>
+{% endblock nav_formulario %}
+
+
+{% block main %}
+<ul>
+<li>MARCA:  {{televisor.marca}}</li>
+<li>PANTALLA:  {{televisor.pulgadas}}"</li>
+<li>DEFINICION:  {{televisor.definicion}}</li>
+<li>ES SMART?:  {{televisor.es_smart}}</li>
+</ul>
+{% endblock main %}

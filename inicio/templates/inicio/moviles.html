@@ -7,7 +7,7 @@
 {% endblock h1_header %}
 
 {% block nav_formulario %}
-<a class="navbar-brand" href={% url 'cargar_movil' %}>CARGAR NUEVO MOVIL</a>
+<a class="navbar-brand" href={% url 'cargar_movil' %}>CARGAR MOVIL</a>
 {% endblock nav_formulario %}
 
 
@@ -16,9 +16,9 @@
     <input type="text" name="marca" placeholder="Samsung, Apple ...">
     <input type="submit" value="Buscar">
 </form> 
-    {% for elemento in listado_moviles %}
+    {% for movil in listado_moviles %}
     <li> 
-        {{elemento}} 
+    {{movil}} |<a href={% url 'eliminar_movil' movil.id %}>Eliminar</a>|<a href={% url 'editar_movil' movil.id %}>Editar</a>| <a href={% url 'detalle_movil' movil.id %}>Ver más...</a>|
     </li>
     {% endfor %}
 {% endblock main %}

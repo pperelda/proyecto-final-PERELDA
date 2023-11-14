@@ -1,7 +1,8 @@
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from django.template import loader
-from inicio.forms import FormularioCrearMovil, FormularioCrearTelevisores, FormularioCrearLaptops
+from inicio.forms import FormularioCrearMovil, FormularioCrearTelevisor, FormularioCrearLaptop
+from inicio.forms import FormularioEditarMovil, FormularioEditarTelevisor, FormularioEditarLaptop
 from inicio.models import Moviles, Televisores, Laptops
 
 
@@ -43,8 +44,41 @@ def cargar_movil(request):  #Vista con formulario para crear movil
     
     formulario = FormularioCrearMovil()
     return render(request, 'inicio/cargar_movil.html', {'formulario': formulario})
-    
 
+def eliminar_movil(request, movil_id):
+    movil_a_eliminar = Moviles.objects.get(id=movil_id)
+    movil_a_eliminar.delete()
+    return redirect('moviles')        
+
+def editar_movil(request, movil_id):
+    movil_a_editar = Moviles.objects.get(id=movil_id)
+    
+    if request.method == "POST":
+        formulario = FormularioEditarMovil(request.POST)
+        if formulario.is_valid():
+            
+            nuevos_atributos = formulario.cleaned_data
+            
+            movil_a_editar.marca = nuevos_atributos.get('marca') 
+            movil_a_editar.modelo = nuevos_atributos.get('modelo')
+            movil_a_editar.color = nuevos_atributos.get('color')
+            movil_a_editar.mpx_camara = nuevos_atributos.get('mpx_camara')
+            movil_a_editar.save()
+            return redirect('moviles')
+        else:
+            return render(request, 'inicio/editar_movil.html', {'formulario': formulario})
+    
+    formulario = FormularioEditarMovil(initial={'marca':movil_a_editar.marca, 'modelo':movil_a_editar.modelo, 'color':movil_a_editar.color, 'mpx_camara':movil_a_editar.mpx_camara})
+    return render(request,'inicio/editar_movil.html', {'formulario': formulario})
+
+def detalle_movil(request, movil_id):
+    movil = Moviles.objects.get(id=movil_id)
+    return render(request, 'inicio/detalle_movil.html', {'movil': movil})
+    
+    
+       
+    
+    
 # ==================== TELEVISORES =====================
 
 def Televisores_principal(request):
@@ -60,7 +94,7 @@ def Televisores_principal(request):
 
 def cargar_televisor(request):  #Vista con formulario para crear movil
     if request.method == 'POST':
-        formulario = FormularioCrearTelevisores(request.POST) 
+        formulario = FormularioCrearTelevisor(request.POST) 
         if formulario.is_valid():
             atributos = formulario.cleaned_data
             
@@ -69,15 +103,45 @@ def cargar_televisor(request):  #Vista con formulario para crear movil
             definicion = atributos.get('definicion')
             es_smart = atributos.get('es_smart')
             
-            televisor = Televisores(marca=marca.lower(), pulgadas=pulgadas, definicion=definicion, es_smart=es_smart)
+            televisor = Televisores(marca=marca.upper(), pulgadas=pulgadas, definicion=definicion, es_smart=es_smart)
             televisor.save()
             
             return redirect('televisores')
         else:
             return render(request, 'inicio/cargar_televisor.html', {'formulario': formulario})
     
-    formulario = FormularioCrearTelevisores()
+    formulario = FormularioCrearTelevisor()
     return render(request, 'inicio/cargar_televisor.html', {'formulario': formulario})
+
+def eliminar_televisor(request, televisor_id):
+    televisor_a_eliminar = Televisores.objects.get(id=televisor_id)
+    televisor_a_eliminar.delete()
+    return redirect('televisores') 
+
+def editar_televisor(request, televisor_id):
+    televisor_a_editar = Televisores.objects.get(id=televisor_id)
+    
+    if request.method == "POST":
+        formulario = FormularioEditarTelevisor(request.POST)
+        if formulario.is_valid():
+            
+            nuevos_atributos = formulario.cleaned_data
+            
+            televisor_a_editar.marca = nuevos_atributos.get('marca') 
+            televisor_a_editar.pulgadas = nuevos_atributos.get('pulgadas')
+            televisor_a_editar.definicion = nuevos_atributos.get('definicion')
+            televisor_a_editar.es_smart = nuevos_atributos.get('es_smart')
+            televisor_a_editar.save()
+            return redirect('televisores')
+        else:
+            return render(request, 'inicio/editar_televisor.html', {'formulario': formulario})
+    
+    formulario = FormularioEditarTelevisor(initial={'marca':televisor_a_editar.marca.upper(), 'pulgadas':televisor_a_editar.pulgadas, 'definicion':televisor_a_editar.definicion, 'es_smart':televisor_a_editar.es_smart.upper()})
+    return render(request,'inicio/editar_televisor.html', {'formulario': formulario}) 
+
+def detalle_televisor(request, televisor_id):
+    televisor = Televisores.objects.get(id=televisor_id)
+    return render(request, 'inicio/detalle_televisor.html', {'televisor': televisor})
 
 
 # ==================== LAPTOPS =====================
@@ -91,9 +155,9 @@ def Laptops_principal(request):
         listado_laptops = Laptops.objects.all() 
     return render(request, 'inicio/laptops.html', {'listado_laptops': listado_laptops})
 
-def cargar_laptop(request):  #Vista con formulario para crear movil
+def cargar_laptop(request):  
     if request.method == 'POST':
-        formulario = FormularioCrearLaptops(request.POST) 
+        formulario = FormularioCrearLaptop(request.POST) 
         if formulario.is_valid():
             atributos = formulario.cleaned_data
             
@@ -108,5 +172,34 @@ def cargar_laptop(request):  #Vista con formulario para crear movil
         else:
             return render(request, 'inicio/cargar_laptop.html', {'formulario': formulario})
         
-    formulario = FormularioCrearLaptops()
+    formulario = FormularioCrearLaptop()
     return render(request, 'inicio/cargar_laptop.html', {'formulario': formulario})
+
+def eliminar_laptop(request, laptop_id):
+    laptop_a_eliminar = Laptops.objects.get(id=laptop_id)
+    laptop_a_eliminar.delete()
+    return redirect('laptops') 
+
+def editar_laptop(request, laptop_id):
+    laptop_a_editar = Laptops.objects.get(id=laptop_id)
+    
+    if request.method == "POST":
+        formulario = FormularioEditarLaptop(request.POST)
+        if formulario.is_valid():
+            
+            nuevos_atributos = formulario.cleaned_data
+            
+            laptop_a_editar.marca = nuevos_atributos.get('marca') 
+            laptop_a_editar.procesador = nuevos_atributos.get('procesador')
+            laptop_a_editar.pulgadas = nuevos_atributos.get('pulgadas')
+            laptop_a_editar.save()
+            return redirect('laptops')
+        else:
+            return render(request, 'inicio/editar_laptop.html', {'formulario': formulario})
+    
+    formulario = FormularioEditarLaptop(initial={'marca':laptop_a_editar.marca.upper(), 'procesador':laptop_a_editar.procesador, 'pulgadas':laptop_a_editar.pulgadas})
+    return render(request,'inicio/editar_laptop.html', {'formulario': formulario}) 
+
+def detalle_laptop(request, laptop_id):
+    laptop = Laptops.objects.get(id=laptop_id)
+    return render(request, 'inicio/detalle_laptop.html', {'laptop': laptop})
