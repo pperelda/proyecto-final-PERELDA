@@ -7,21 +7,17 @@
 {% endblock h1_header %}
 
 {% block nav_formulario %}
-
+<a class="navbar-brand" href={% url 'perfil' %}>Volver</a>
 {% endblock nav_formulario %}
 
 
 {% block main %}
 <h3>EDITAR DATOS DE REGISTRO</h3>
-<table>
+
 <form action= {% url "editar_perfil" %} method="POST" >
     {% csrf_token %}
-    
     {{formulario}}
     <input type="submit" value="Editar datos">
-    
 </form>
-</table>
-<a  href={% url 'editar_password' %}>Cambiar contraseña</a>  
 
 {% endblock main %}

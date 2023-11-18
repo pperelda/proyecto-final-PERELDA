@@ -15,17 +15,17 @@
 
 
 
-{% if listado_moviles %}
-<ul>
-    {% for movil in listado_moviles %}
-    <li> 
-    <a href={% url 'detalle_movil' movil.id %}>{{movil}}</a> | <a href={% url 'editar_movil' movil.id %}>Editar</a> | <a href={% url 'eliminar_movil' movil.id %}>Eliminar</a>|
-    </li>
-    {% endfor %}
-</ul>
-{% else %}
-<p> No se encontraron moviles cargados </p>
-{% endif %}
+    {% if listado_moviles %}
+        <ul>
+            {% for movil in listado_moviles %}
+            <li> 
+            <a href={% url 'detalle_movil' movil.id %}>{{movil}}</a> | <a href={% url 'editar_movil' movil.id %}>Editar</a> | <a href={% url 'eliminar_movil' movil.id %}>Eliminar</a>|
+            </li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p> No se encontraron moviles cargados </p>
+    {% endif %}
 
 {% endblock main %}
 

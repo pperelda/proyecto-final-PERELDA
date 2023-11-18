@@ -1,6 +1,20 @@
-# tercera-pre-entrega
-La pagina web intenta simular un inventario de productos (moviles, televisores y laptops)
-desde la pagina de inicio (Bienvenida) el usuario puede dirigirse a la pagina de cada producto, y desde alli elegir cargar un nuevo producto al inventario, o retornar a inicio nuevamente.
+PROYECTO FINAL
 
-El proyecto me quedo inconcluso en la carga de datos por formularios porque encuentra un error cuando intenta crear un nuevo producto. 
-Por ejemplo, al querer cargar una nueva laptop ingresando los datos en el formulario, arroja un error que dice: Laptops() got an unexpected keyword argument 'marca'. 
+La pagina web simula un inventario de 3 productos (a modo de ejempl0, se definen 3 modelos: Moviles, Televisores y Laptops).
+Para el objeto Moviles, se usa clases basadas en vistas.
+Para los objetos Televisores y Laptops, vistas mediante funciones.
+Las funcionalidades referentes a CRUD (Eliminar y Editar) requieren que el usuario este logueado.
+
+En la app 'inicio', se gestionan las vistas de los modelos Moviles, Televisores y Laptops.
+En la app 'cuentas', se gestionan las vistas referentes a cuentas de usuarios.
+
+El usuario puede iniciar sesion (si ya tiene cuenta creada) o registrarse por primera vez.
+En la barra del navegador, desde el boton con el nombre de usuario se puede acceder a informacion del perfil, y desde alli poder 'Editar Perfil' o 'Cambiar Contraseña'.
+
+
+
+Pendientes para finalizar entrega:
+- Video explicativo
+- Completar informacion de la vista Perfil
+- Completar pagina de perfil de usuario
+- Cargar avatar de perfil

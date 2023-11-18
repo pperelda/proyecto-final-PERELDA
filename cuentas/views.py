@@ -32,6 +32,8 @@ def registro_usuario(request):
             return redirect('login')
     return render(request, 'cuentas/registro.html', {'formulario_de_registro': formulario})
 
+def perfil(request):
+    return render(request, 'cuentas/perfil.html', {} )
 
 def editar_perfil(request):
     formulario = FormularioEditarPerfil(instance = request.user)
@@ -41,11 +43,10 @@ def editar_perfil(request):
         
         if formulario.is_valid():
             formulario.save()
-            return redirect('inicio')
+            return redirect('perfil')
     return render(request, 'cuentas/editar_perfil.html', {'formulario': formulario})
-
 
 class editar_password(PasswordChangeView):
     template_name = 'cuentas/editar_password.html'
-    success_url = reverse_lazy('editar_perfil')
+    success_url = reverse_lazy('perfil')
 
