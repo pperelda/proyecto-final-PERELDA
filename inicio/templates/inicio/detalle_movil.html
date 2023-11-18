@@ -3,7 +3,7 @@
 {% block h1_head %}<title>Moviles</title> {% endblock h1_head %}
 
 {% block h1_header %}
-<h3 class="masthead-heading mb-0">MOVIL #{{movil.id}}</h3>
+<h3 class="masthead-heading mb-0">MOVIL #{{moviles.id}}</h3>
 {% endblock h1_header %}
 
 {% block nav_formulario %}
@@ -14,9 +14,9 @@
 
 {% block main %}
 <ul>
-<li>MARCA:  {{movil.marca}}</li>
-<li>MODELO:  {{movil.modelo}}</li>
-<li>COLOR:  {{movil.color}}</li>
-<li>CAMARA:  {{movil.mpx_camara}} mpx</li>
+<li>MARCA:  {{moviles.marca}}</li>
+<li>MODELO:  {{moviles.modelo}}</li>
+<li>COLOR:  {{moviles.color}}</li>
+<li>CAMARA:  {{moviles.mpx_camara}} mpx</li>
 </ul>
 {% endblock main %}

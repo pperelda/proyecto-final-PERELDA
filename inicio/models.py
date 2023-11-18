@@ -2,12 +2,12 @@ from django.db import models
 
 class Moviles(models.Model):
     marca = models.CharField(max_length=15)
-    modelo = models.TextField()
+    modelo = models.CharField(max_length=15)
     color = models.CharField(max_length=15)
     mpx_camara = models.IntegerField()
-    
+# AGREGAR OTROS CAMPOS DE INFORMACION --- DATEFIELD/DESCRIPCION, ETC    
     def __str__(self):
-        return f'{self.marca.capitalize()} - {self.modelo} - {self.color.capitalize()} - {self.mpx_camara} mpx'
+        return f'{self.marca.capitalize()} - {self.modelo} - {self.color.capitalize()}'
 
 class Televisores(models.Model):
     marca = models.CharField(max_length=30)

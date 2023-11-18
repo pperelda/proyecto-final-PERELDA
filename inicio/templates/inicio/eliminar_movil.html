@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+
+{% block h1_head %}<title>Eliminar movil</title> {% endblock h1_head %}
+
+
+{% block h1_header %}
+<h1 >Eliminar movil</h1>
+{% endblock h1_header %}
+
+{% block main %}
+
+<form action='' method='POST'>
+    {% csrf_token %}
+    ¿Desea eliminar el movil: {{moviles.marca}} - {{moviles.modelo}}?
+    <input type="submit" value="Confirmar">
+</form>
+{% endblock main %}
