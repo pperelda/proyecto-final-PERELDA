@@ -4,6 +4,7 @@ from django.contrib.auth import authenticate, login as django_login
 from cuentas.forms import FormularioRegistroUsuario, FormularioEditarPerfil
 from django.contrib.auth.views import PasswordChangeView
 from django.urls import reverse_lazy
+from cuentas.models import DatosExtra
 
 
 def login(request):    
@@ -16,6 +17,8 @@ def login(request):
             
             user = authenticate(username=usuario, password=clave) 
             django_login(request, user)
+            
+            DatosExtra.objects.get_or_create(user=request.user)
             
             return redirect('inicio')
     
@@ -36,14 +39,26 @@ def perfil(request):
     return render(request, 'cuentas/perfil.html', {} )
 
 def editar_perfil(request):
-    formulario = FormularioEditarPerfil(instance = request.user)
     
-    if request.method == 'POST':
-        formulario = FormularioEditarPerfil(request.POST, instance = request.user)
+    datos_extra = request.user.datosextra   #'datosextra' se forma a partir de DatosExtra TODO EN MINUSCULA
+    formulario = FormularioEditarPerfil(initial={'biografia': datos_extra.biografia, 'avatar': datos_extra.avatar}, instance = request.user)
+    
+    if request.method == 'POST':        
+        formulario = FormularioEditarPerfil(request.POST, request.FILES, instance=request.user)
         
         if formulario.is_valid():
+            nueva_biografia = formulario.cleaned_data.get('biografia')
+            nuevo_avatar = formulario.cleaned_data.get('avatar')
+            
+            if nueva_biografia:
+                datos_extra.biografia = nueva_biografia
+            if nuevo_avatar:
+                datos_extra.avatar = nuevo_avatar
+            datos_extra.save()
             formulario.save()
+            
             return redirect('perfil')
+        
     return render(request, 'cuentas/editar_perfil.html', {'formulario': formulario})
 
 class editar_password(PasswordChangeView):

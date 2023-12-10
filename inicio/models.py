@@ -5,9 +5,13 @@ class Moviles(models.Model):
     modelo = models.CharField(max_length=15)
     color = models.CharField(max_length=15)
     mpx_camara = models.IntegerField()
+    imagen = models.ImageField(upload_to='moviles/', null=True, blank=True)
+
+
 # AGREGAR OTROS CAMPOS DE INFORMACION --- DATEFIELD/DESCRIPCION, ETC    
     def __str__(self):
-        return f'{self.marca.capitalize()} - {self.modelo} - {self.color.capitalize()}'
+        return f'{self.marca.upper()} - {self.modelo} - {self.color.capitalize()}'
+
 
 class Televisores(models.Model):
     marca = models.CharField(max_length=30)
@@ -24,5 +28,5 @@ class Laptops(models.Model):
     pulgadas = models.IntegerField()
     
     def __str__(self):
-        return f'{self.marca.capitalize()} - {self.procesador} - {self.pulgadas}"'
+        return f'{self.marca.upper()} - {self.procesador} - {self.pulgadas}"'
    

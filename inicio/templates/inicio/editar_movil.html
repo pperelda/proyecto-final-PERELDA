@@ -12,9 +12,11 @@
 
 
 {% block main %}
+
 <form action="" method="POST">
     {% csrf_token %}
-    {{form}}
-    <input type="submit" value="Editar">
+    <table style= "color: black; margin: 20px auto;">{{form.as_table}}</table>
+    <input type="submit" value="Editar" style="width: 150px;">
 </form> 
+
 {% endblock main %}

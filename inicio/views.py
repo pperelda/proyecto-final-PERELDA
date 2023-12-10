@@ -28,7 +28,7 @@ class ListadoMoviles(ListView):
 class cargar_movil(LoginRequiredMixin, CreateView):
     model = Moviles
     template_name = 'inicio/cargar_movil.html'
-    fields = ['marca', 'modelo', 'color', 'mpx_camara']
+    fields = ['marca', 'modelo', 'color', 'mpx_camara', 'imagen']
     success_url = reverse_lazy('moviles') 
     
 class eliminar_movil(LoginRequiredMixin, DeleteView):
@@ -39,7 +39,7 @@ class eliminar_movil(LoginRequiredMixin, DeleteView):
 class editar_movil(LoginRequiredMixin, UpdateView):
     model = Moviles
     template_name = 'inicio/editar_movil.html'
-    fields = ['marca', 'modelo', 'color', 'mpx_camara']
+    fields = ['marca', 'modelo', 'color', 'mpx_camara', 'imagen']
     success_url = reverse_lazy('moviles')   
 
 class detalle_movil(DetailView):
@@ -57,7 +57,7 @@ def Televisores_principal(request):
     else:
         listado_televisores = Televisores.objects.all()
      
-    return render(request, 'inicio/televisores.html', {'listado_televisores':listado_televisores})
+    return render(request, 'inicio/televisores.html', {'listado_televisores':listado_televisores,'marca_a_buscar':marca_a_buscar})
 
 @login_required
 def cargar_televisor(request):  #Vista con formulario para crear movil
@@ -123,7 +123,7 @@ def Laptops_principal(request):
         listado_laptops = Laptops.objects.filter(marca__icontains=marca_a_buscar)
     else:
         listado_laptops = Laptops.objects.all() 
-    return render(request, 'inicio/laptops.html', {'listado_laptops': listado_laptops})
+    return render(request, 'inicio/laptops.html', {'listado_laptops': listado_laptops, 'marca_a_buscar':marca_a_buscar })
 
 @login_required
 def cargar_laptop(request):  

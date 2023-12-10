@@ -7,6 +7,7 @@ class FormularioBaseMovil(forms.Form):
     color = forms.CharField(max_length=15)
     mpx_camara = forms.IntegerField()
 
+
 class FormularioCrearMovil(FormularioBaseMovil):
     ...
 

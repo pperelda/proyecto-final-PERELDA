@@ -4,14 +4,14 @@
 
 
 {% block h1_header %}
-<h1 >Cargue nuevo televisor</h1>
+<h1 >Nuevo Televisor</h1>
 {% endblock h1_header %}
 
 {% block main %}
 
 <form action='' method='POST'>
     {% csrf_token %}
-    {{formulario}}
-    <input type="submit" value="Cargar">
+    <table style= "color: black; margin: 20px auto;">{{formulario}}</table>
+    <input type="submit" value="Cargar" style="width: 100px;">
 </form>
 {% endblock main %}

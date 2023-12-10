@@ -16,9 +16,15 @@
     <input type="text" name="marca" placeholder="Samsung, LG, TCL ...">
     <input type="submit" value="Buscar">
 </form>
-    {% for televisor in listado_televisores %}
-    <li> 
-        {{televisor}} |<a href={% url 'eliminar_televisor' televisor.id %}>Eliminar</a>| <a href={% url 'editar_televisor' televisor.id %}>Editar</a>| <a href={% url 'detalle_televisor' televisor.id %}>Ver más...</a>| 
-    </li>
-    {% endfor %}
+<div style= "color: black; ">
+    {% if listado_televisores%}
+        {% for televisor in listado_televisores %}
+        <li style="margin: 10px auto;"> 
+        <strong> {{televisor}}</strong> |<a href={% url 'eliminar_televisor' televisor.id %}>Eliminar</a>| <a href={% url 'editar_televisor' televisor.id %}>Editar</a>| <a href={% url 'detalle_televisor' televisor.id %}>Ver más...</a>| 
+        </li>
+        {% endfor %}
+    {% else %} 
+        <p> No se encontraron televisores marca {{marca_a_buscar|upper}} </p>
+    {% endif %}
+</div>
 {% endblock main %}

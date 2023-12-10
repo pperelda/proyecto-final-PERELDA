@@ -4,14 +4,14 @@
 
 
 {% block h1_header %}
-<h1 >Cargue nuevo movil</h1>
+<h1 >Nuevo Movil</h1>
 {% endblock h1_header %}
 
 {% block main %}
 
-<form action='' method='POST'>
+<form action='' method='POST' enctype="multipart/form-data">
     {% csrf_token %}
-    {{form}}
-    <input type="submit" value="Cargar">
+    <table style= "color: black; margin: 20px auto;">{{form}}</table>
+    <input type="submit" value="Cargar" style="width: 100px;">
 </form>
 {% endblock main %}
