@@ -12,9 +12,10 @@
 
 
 {% block main %}
-
-
-
+<form action = {% url "moviles" %}>
+    <input type='text' name='marca' placeholder='SAMSUNG, IPHONE ...'>
+    <input TYPE='submit' value='buscar'>
+</form>
     {% if listado_moviles %}
         {% for movil in listado_moviles %}
             <li style= "color: black; margin: 10px auto;"> 

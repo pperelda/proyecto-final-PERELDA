@@ -6,6 +6,7 @@ class Moviles(models.Model):
     color = models.CharField(max_length=15)
     mpx_camara = models.IntegerField()
     imagen = models.ImageField(upload_to='moviles/', null=True, blank=True)
+    fecha_creacion = models.DateTimeField(auto_now_add=True)
 
 
 # AGREGAR OTROS CAMPOS DE INFORMACION --- DATEFIELD/DESCRIPCION, ETC    

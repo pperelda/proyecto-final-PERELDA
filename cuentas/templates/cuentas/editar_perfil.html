@@ -12,13 +12,17 @@
 
 
 {% block main %}
-<h3>DATOS DE USUARIO</h3>
+<h3>EDITAR DATOS DE USUARIO</h3>
 
-<div class="contenedorFormulario">
-    <form action= {% url "editar_perfil" %} method="POST" enctype='multipart/form-data' style="text-align: center;">
+<div >
+    <form action= {% url "editar_perfil" %} method="POST" enctype='multipart/form-data' style="text-align: left;">
     {% csrf_token %}
-    <table style= "color: black; margin: 20px auto;">{{formulario.as_table}}</table>
-    <input type="submit" value="Guardar cambios" style="width: 150px;">
+    <table style= "color: black; margin: 20px auto;">
+        {{formulario.media}}
+        {{formulario.as_table}}
+    
+    </table>
+        <input type="submit" value="Guardar cambios" style="width: 150px;">    
     </form>
 </div>
 

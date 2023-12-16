@@ -15,12 +15,14 @@
 <div class="contenedorFormulario">
     <h3 style= "color: black;">MI PERFIL</h3>
     <hr>
-    <img class="img-thumbnail  mb-3" src="{{request.user.datosextra.avatar.url}}" alt="{{avatar}}" style="width: 150px;"> </img>
+    {% if request.user.datosextra.avatar  %}
+        <img class="img-thumbnail  mb-3" src="{{request.user.datosextra.avatar.url}}" alt="{{avatar}}" style="width: 150px;"> </img>
+    {% endif %}    
     <p style= "color: black;"><strong> Usuario:</strong> {{request.user.username}} </p>
     <p style= "color: black;"><strong> Email:</strong>  {{user.email}} </p>
     <p style= "color: black;"><strong> Nombre:</strong>   {{user.first_name}} </p>
     <p style= "color: black;"><strong> Apellido:</strong>   {{user.last_name}} </p>
-    <p style= "color: black;"><strong> Biografia:</strong> {{request.user.datosextra.biografia}} </p>
+    <p style= "color: black;"><strong> Biografia:</strong> {{request.user.datosextra.biografia | safe}} </p>
     <a class="btn btn-primary w-100 mb-1"  href={% url 'editar_perfil' %}>Editar Perfil</a> 
     <a class="btn btn-primary w-100" href={% url 'editar_password' %}>Cambiar Contraseña</a> 
 </div>

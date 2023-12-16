@@ -25,6 +25,15 @@ class ListadoMoviles(ListView):
     context_object_name = 'listado_moviles'
     template_name = 'inicio/moviles.html'
 
+    def get_queryset(self):
+        marca = self.request.GET.get('marca', '')
+        if marca:
+            listado_moviles = self.model.objects.filter(marca__icontains=marca)
+        else:
+            listado_moviles = self.model.objects.all()
+        return listado_moviles
+            
+   
 class cargar_movil(LoginRequiredMixin, CreateView):
     model = Moviles
     template_name = 'inicio/cargar_movil.html'
