@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+
+{% block h1_head %}<title>Contacto</title> {% endblock h1_head %}
+
+{% block h1_header %}
+<title>Contacto</title>
+{% endblock h1_header %}
+
+
+{% block nav_formulario %}
+
+{% endblock nav_formulario %}
+
+
+{% block main %}
+<div class="contenedorFormulario">
+    <h3 style= "color: black;">Contáctanos</h3>
+    <hr>
+    <form action = {% url "contacto" %} method='POST'> 
+        {% csrf_token %}
+        <p> Asunto: <input type='text' name='asunto'></p>
+        <p> Email: <input type='text' name='email'></p>
+        <p> Mensaje: <input type='text' name='mensaje'></p>
+        <input type='submit' name='Enviar'>
+    </form>     
+</div>
+
+{% endblock main %}

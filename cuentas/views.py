@@ -5,6 +5,8 @@ from cuentas.forms import FormularioRegistroUsuario, FormularioEditarPerfil
 from django.contrib.auth.views import PasswordChangeView
 from django.urls import reverse_lazy
 from cuentas.models import DatosExtra
+from django.core.mail import send_mail
+from django.conf import settings
 
 
 def login(request):    
@@ -65,3 +67,15 @@ class editar_password(PasswordChangeView):
     template_name = 'cuentas/editar_password.html'
     success_url = reverse_lazy('perfil')
 
+
+def contacto(request):
+    if request.method == 'POST':
+        asunto = request.POST['asunto']
+        mensaje = 'Remitente: '+ request.POST['email']+ '\n' + request.POST['mensaje']  
+        email_from = settings.EMAIL_HOST_USER
+        recipient_list = ['pabloperelda@gmail.com']
+        
+        send_mail(asunto, mensaje, email_from, recipient_list)
+   
+        return redirect('inicio')
+    return render(request, 'cuentas/contacto.html')
