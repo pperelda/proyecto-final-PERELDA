@@ -79,3 +79,6 @@ def contacto(request):
    
         return redirect('inicio')
     return render(request, 'cuentas/contacto.html')
+
+def about_us(request):
+    return render(request, 'cuentas/about_us.html')
