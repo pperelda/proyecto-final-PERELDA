@@ -7,9 +7,7 @@ class Moviles(models.Model):
     mpx_camara = models.IntegerField()
     imagen = models.ImageField(upload_to='moviles/', null=True, blank=True)
     fecha_creacion = models.DateTimeField(auto_now_add=True)
-
-
-# AGREGAR OTROS CAMPOS DE INFORMACION --- DATEFIELD/DESCRIPCION, ETC    
+   
     def __str__(self):
         return f'{self.marca.upper()} - {self.modelo} - {self.color.capitalize()}'
 
@@ -22,6 +20,7 @@ class Televisores(models.Model):
     
     def __str__(self):
         return f'{self.marca.upper()} - {self.pulgadas}"'
+ 
     
 class Laptops(models.Model):
     marca = models.CharField(max_length=30)
