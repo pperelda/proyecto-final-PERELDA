@@ -19,6 +19,8 @@
     <li>COLOR:  {{moviles.color}}</li>
     <li>CAMARA:  {{moviles.mpx_camara}} mpx</li>
     <li>FECHA CREACION: {{moviles.fecha_creacion}} </li>
-    <li> <img src={{moviles.imagen.url}} style="max-height:200px">
+    {% if moviles.imagen %}    
+        <li> <img src={{moviles.imagen.url}} style="max-height:200px"></li>
+    {% endif %}   
 </ul>
 {% endblock main %}
